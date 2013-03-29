@@ -1,0 +1,51 @@
+[DEFAULT]
+debug = <%= @quantum_debug %>
+verbose = <%= @quantum_verbose %>
+bind_host = <%= @quantum_ipaddress %>
+bind_port = <%= @quantum_port %>
+
+<% if @quantum_plugin == "ovs" %>
+core_plugin = quantum.plugins.openvswitch.ovs_quantum_plugin.OVSQuantumPluginV2
+<% end %>
+api_paste_config = /etc/quantum/api-paste.ini
+auth_strategy = keystone
+
+# Enable or disable overlapping IPs for subnets
+# Attention: the following parameter MUST be set to False if Quantum is
+# being used in conjunction with nova security groups and/or metadata service.
+allow_overlapping_ips = <%= @overlapping_ips %>
+
+rpc_thread_pool_size = 64
+rpc_conn_pool_size = 30
+rpc_response_timeout = 60
+rpc_cast_timeout = 30
+control_exchange = quantum
+
+# IP address of the RabbitMQ installation
+rabbit_host = <%= @rabbit_ipaddress %>
+rabbit_port = <%= @rabbit_port %>
+rabbit_max_retries = 0
+rabbit_retry_interval = 1
+
+notification_driver = quantum.openstack.common.notifier.rpc_notifier
+default_notification_level = INFO
+notification_topics = notifications
+
+[QUOTAS]
+# resource name(s) that are supported in quota features
+# quota_items = network,subnet,port
+
+# default number of resource allowed per tenant, minus for unlimited
+# default_quota = -1
+
+# number of networks allowed per tenant, and minus means unlimited
+# quota_network = 10
+
+# number of subnets allowed per tenant, and minus means unlimited
+# quota_subnet = 10
+
+# number of ports allowed per tenant, and minus means unlimited
+# quota_port = 50
+
+# default driver to use for quota checks
+# quota_driver = quantum.quota.ConfDriver

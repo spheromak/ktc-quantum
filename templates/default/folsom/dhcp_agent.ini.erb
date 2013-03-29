@@ -1,0 +1,18 @@
+[DEFAULT]
+admin_password = <%= @service_pass %>
+admin_user = <%= @service_user %>
+admin_tenant_name = <%= @service_tenant_name %>
+auth_url = <%= @keystone_protocol %>://<%= @keystone_api_ipaddress %>:<%= @keystone_admin_port %>/<%= @keystone_path %>
+use_namespaces = <%= @quantum_namespace %>
+debug = <%= @quantum_debug %>
+verbose = <%= @quantum_verbose %>
+root_helper = sudo /usr/bin/quantum-rootwrap /etc/quantum/rootwrap.conf
+
+# State_path must be writable by service user for quantum
+state_path = /var/run/quantum
+
+<% if @quantum_plugin == "ovs" %>
+interface_driver = quantum.agent.linux.interface.OVSInterfaceDriver
+<% end %>
+
+dhcp_driver = quantum.agent.linux.dhcp.Dnsmasq
