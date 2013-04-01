@@ -9,6 +9,8 @@ root_helper = sudo /usr/bin/quantum-rootwrap /etc/quantum/rootwrap.conf
 
 <% if @quantum_plugin == "ovs" %>
 interface_driver = quantum.agent.linux.interface.OVSInterfaceDriver
+<% elsif @quantum_plugin == "lb" %>
+interface_driver = quantum.agent.linux.interface.BridgeInterfaceDriver
 <% end %>
 
 auth_url = <%= @keystone_protocol %>://<%= @keystone_api_ipaddress %>:<%= @keystone_admin_port %>/<%= @keystone_path %>
