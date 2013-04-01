@@ -137,6 +137,36 @@ template "/etc/quantum/api-paste.ini" do
     )
 end
 
+template "/etc/quantum/plugins/linuxbridge/linuxbridge_conf.ini" do
+    source "#{release}/linuxbridge_conf.ini.erb"
+    owner "root"
+    group "root"
+    mode "0644"
+    variables(
+            "db_ip_address" => mysql_info["host"],
+            "db_user" => node["quantum"]["db"]["username"],
+            "db_password" => node["quantum"]["db"]["password"],
+            "db_name" => node["quantum"]["db"]["name"],
+            "lb_debug" => node["quantum"]["debug"],
+            "lb_verbose" => node["quantum"]["verbose"],
+            "physical_network" => node["quantum"]["lb"]["physical_network"],
+            "physical_interface" => node["quantum"]["lb"]["physical_interface"],
+            "physical_networks" => node["quantum"]["lb"]["physical_networks"]
+    )
+    only_if { node["quantum"]["plugin"] == "lb" }
+end
+
+template "/etc/default/quantum-server" do
+  source "#{release}/quantum-server.erb"
+  owner "quantum"
+  group "quantum"
+  mode "0600"
+  variables(
+          "quantum_plugin" => node["quantum"]["plugin"]
+  )
+  notifies :restart, resources(:service => "quantum-server"), :immediately
+end
+
 # Get rabbit info
 rabbit_info = get_access_endpoint("rabbitmq-server", "rabbitmq", "queue")
 template "/etc/quantum/quantum.conf" do
