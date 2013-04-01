@@ -57,7 +57,7 @@ default["quantum"]["ovs"]["external_bridge"] = "br-ex"
 default["quantum"]["ovs"]["external_interface"] = "eth1"
 
 # LB
-default["quantum"]["lb"]["packages"] = [ "quantum-plugin-linuxbridge-agent"]
+default["quantum"]["lb"]["packages"] = [ "quantum-plugin-linuxbridge","quantum-plugin-linuxbridge-agent"]
 default["quantum"]["lb"]["service_name"] = "quantum-plugin-linuxbridge-agent"
 default["quantum"]["lb"]["external_bridge"] = ""
 default["quantum"]["lb"]["physical_networks"] = "private-net-01,private-net-02"  # Pre-defined private networks
