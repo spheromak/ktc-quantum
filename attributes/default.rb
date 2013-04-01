@@ -41,7 +41,7 @@ default["quantum"]["verbose"] = "False"
 default["quantum"]["overlap_ips"] = "False"
 default["quantum"]["use_namespaces"] = "False" # should correspond to overlap_ips used for dhcp agent and l3 agent.
 
-# Manage plugins here, currently only supports openvswitch (ovs)
+# Manage plugins here, choose ovs for openvswitch or lb for linuxbridge
 default["quantum"]["plugin"] = "ovs"
 
 # Plugin defaults
@@ -56,6 +56,13 @@ default["quantum"]["ovs"]["tunnel_bridge"] = "br-tun"		# only used if tunnel_ran
 default["quantum"]["ovs"]["external_bridge"] = "br-ex"
 default["quantum"]["ovs"]["external_interface"] = "eth1"
 
+# LB
+default["quantum"]["lb"]["packages"] = [ "quantum-plugin-linuxbridge-agent"]
+default["quantum"]["lb"]["service_name"] = "quantum-plugin-linuxbridge-agent"
+default["quantum"]["lb"]["external_bridge"] = ""
+default["quantum"]["lb"]["physical_networks"] = "private-net-01,private-net-02"  # Pre-defined private networks
+default["quantum"]["lb"]["physical_network"] = "private-net-01"                  # Pre-defined private network for this node
+default["quantum"]["lb"]["physical_interface"] = "eth1"                          # Physical interface used for VM traffic
 
 case platform
 when "fedora", "redhat", "centos"
