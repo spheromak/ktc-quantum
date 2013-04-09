@@ -42,7 +42,7 @@ default["quantum"]["overlap_ips"] = "False"
 default["quantum"]["use_namespaces"] = "False" # should correspond to overlap_ips used for dhcp agent and l3 agent.
 
 # Manage plugins here, choose ovs for openvswitch or lb for linuxbridge
-default["quantum"]["plugin"] = "ovs"
+default["quantum"]["plugin"] = "lb"
 
 # Plugin defaults
 # OVS
