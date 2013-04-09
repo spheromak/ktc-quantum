@@ -23,14 +23,6 @@ end
 
 node.set_unless['quantum']['service_pass'] = secure_password
 
-# apply fixes for Alpha-1
-execute "apply patch" do
-    command "wget -O /dev/stdout -q https://github.com/kt-cloudware/quantum/commit/d26d991eb0b82a706288ddc5e38ad5d1167ce164.patch | patch -p1"
-    cwd "/usr/lib/python2.7/dist-packages"
-    action :nothing
-    subscribes :run, "package[quantum-server]", :immediately
-end
-
 package "quantum-server" do
     action :install
 end
@@ -56,6 +48,14 @@ platform_options["mysql_python_packages"].each do |pkg|
     package pkg do
         action :install
     end
+end
+
+# apply fixes for Alpha-1
+execute "apply patch" do
+    command "wget -O /dev/stdout -q https://github.com/kt-cloudware/quantum/commit/d26d991eb0b82a706288ddc5e38ad5d1167ce164.patch | patch -p1"
+    cwd "/usr/lib/python2.7/dist-packages"
+    action :nothing
+    subscribes :run, "package[quantum-server]", :immediately
 end
 
 platform_options["quantum_packages"].each do |pkg|
