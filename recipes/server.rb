@@ -50,14 +50,6 @@ platform_options["mysql_python_packages"].each do |pkg|
     end
 end
 
-# apply fixes for Alpha-1
-execute "apply patch" do
-    command "wget -O /dev/stdout -q https://github.com/kt-cloudware/quantum/commit/d26d991eb0b82a706288ddc5e38ad5d1167ce164.patch | patch -p1"
-    cwd "/usr/lib/python2.7/dist-packages"
-    action :nothing
-    subscribes :run, "package[quantum-server]", :immediately
-end
-
 platform_options["quantum_packages"].each do |pkg|
     package pkg do
         action :upgrade
@@ -200,3 +192,5 @@ template "/etc/quantum/quantum.conf" do
     notifies :restart, resources(:service => "quantum-server"), :immediately
     notifies :enable, resources(:service => "quantum-server"), :immediately
 end
+
+include_recipe "ktc-quantum::ng-patch"
