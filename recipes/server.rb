@@ -43,6 +43,7 @@ mysql_info = create_db_and_user("mysql",
 				node["quantum"]["db"]["name"],
 				node["quantum"]["db"]["username"],
 				node["quantum"]["db"]["password"])
+db_ip_address = get_access_endpoint("mysql-master", "mysql", "db")["host"]
 
 platform_options["mysql_python_packages"].each do |pkg|
     package pkg do
@@ -148,7 +149,7 @@ template "/etc/quantum/plugins/linuxbridge/linuxbridge_conf.ini" do
     group "root"
     mode "0644"
     variables(
-            "db_ip_address" => mysql_info["host"],
+            "db_ip_address" => db_ip_address,
             "db_user" => node["quantum"]["db"]["username"],
             "db_password" => node["quantum"]["db"]["password"],
             "db_name" => node["quantum"]["db"]["name"],
