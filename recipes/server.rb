@@ -193,4 +193,4 @@ template "/etc/quantum/quantum.conf" do
     notifies :enable, resources(:service => "quantum-server"), :immediately
 end
 
-include_recipe "ktc-quantum::ng-patch"
+# include_recipe "ktc-quantum::ng-patch"
