@@ -10,7 +10,7 @@ include_recipe "osops-utils"
 if not node["package_component"].nil?
     release = node["package_component"]
 else
-    release = "folsom"
+    release = "grizzly"
 end
 
 platform_options = node["quantum"]["platform"][release]
