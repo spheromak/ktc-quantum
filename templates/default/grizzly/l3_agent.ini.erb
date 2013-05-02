@@ -1,0 +1,20 @@
+[DEFAULT]
+external_network_bridge = <%= @quantum_external_bridge %>
+use_namespaces = <%= @quantum_namespace %>
+metadata_ip = <%= @nova_metadata_ip %>
+debug = <%= @quantum_debug %>
+verbose = <%= @quantum_verbose %>
+state_path = /var/run/quantum
+root_helper = sudo /usr/bin/quantum-rootwrap /etc/quantum/rootwrap.conf
+
+<% if @quantum_plugin == "ovs" %>
+interface_driver = quantum.agent.linux.interface.OVSInterfaceDriver
+<% elsif @quantum_plugin == "lb" %>
+interface_driver = quantum.agent.linux.interface.BridgeInterfaceDriver
+<% end %>
+
+auth_url = <%= @keystone_protocol %>://<%= @keystone_api_ipaddress %>:<%= @keystone_admin_port %>/<%= @keystone_path %>
+auth_region = <%= @keystone_region %>
+admin_tenant_name = <%= @service_tenant_name %>
+admin_user = <%= @service_user %>
+admin_password = <%= @service_pass %>

@@ -85,4 +85,16 @@ when "ubuntu"
 	    "quantum_api_process_name" => "quantum-server",
 	    "package_overrides" => "-o Dpkg::Options::='--force-confold' -o Dpkg::Options::='--force-confdef'"
     }
+    default["quantum"]["platform"]["grizzly"] = {
+	    "mysql_python_packages" => [ "python-mysqldb" ],
+	    "quantum_packages" => [ "quantum-server", "python-quantum", "quantum-common" ],
+	    "quantum_dhcp_packages" => [ "dnsmasq-base", "dnsmasq-utils", "libnetfilter-conntrack3", "quantum-dhcp-agent" ],
+	    "quantum_l3_packages" => ["quantum-l3-agent"],
+	    "quantum_api_service" => "quantum-server",
+	    "quantum_dhcp_agent" => "quantum-dhcp-agent",
+	    "quantum_l3_agent" => "quantum-l3-agent",
+	    "quantum_api_process_name" => "quantum-server",
+	    "package_overrides" => "-o Dpkg::Options::='--force-confold' -o Dpkg::Options::='--force-confdef'"
+    }
+
 end

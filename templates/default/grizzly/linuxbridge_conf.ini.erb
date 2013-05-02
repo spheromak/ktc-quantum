@@ -1,0 +1,15 @@
+[DATABASE]
+sql_connection = mysql://<%= @db_user %>:<%= @db_password %>@<%= @db_ip_address %>/<%= @db_name %>
+
+[LINUX_BRIDGE]
+physical_interface_mappings = <%= @physical_network %>:<%= @physical_interface %>
+
+[VLANS]
+network_vlan_ranges = <%= @physical_networks %>
+
+[AGENT]
+root_helper = sudo /usr/bin/quantum-rootwrap /etc/quantum/rootwrap.conf
+state_path = /var/run/quantum
+polling_interval = 2
+debug = <%= @lb_debug %>
+verbose = <%= @lb_verbose %>
