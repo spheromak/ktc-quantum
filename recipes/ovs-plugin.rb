@@ -16,6 +16,8 @@ plugin = node["quantum"]["plugin"]
 node["quantum"][plugin]["packages"].each do |pkg| 
     package pkg do
         action :upgrade
+	p platform_options
+	print "package_overrides"
         options platform_options["package_overrides"]
     end
 end
