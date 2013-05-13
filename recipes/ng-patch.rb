@@ -6,7 +6,7 @@ include_recipe "osops-utils"
 
 # add /32 subnet support
 template "/usr/share/pyshared/quantum/db/db_base_plugin_v2.py" do
-  source "ktc-patches/db_base_plugin_v2.py.2012.2.1-0ubuntu1~cloud0"
+  source "ktc-patches/db_base_plugin_v2.py.python-quantum"
   owner "root"
   owner "root"
   mode "0644"
