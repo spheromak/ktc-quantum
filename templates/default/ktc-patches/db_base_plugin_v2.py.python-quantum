@@ -757,7 +757,7 @@ class QuantumDbPluginV2(quantum_plugin_base_v2.QuantumPluginBaseV2):
         subnet = netaddr.IPNetwork(subnet_cidr)
 	mask = subnet_cidr.split('/')[1]
 
-	if mask -- '32':
+	if mask == '32':
 		subnet_first_ip = subnet_last_ip = netaddr.IPAdress(subnet.first) 
 	else 
 		subnet_first_ip = netaddr.IPAddress(subnet.first + 1)
