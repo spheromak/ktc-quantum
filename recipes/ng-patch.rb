@@ -11,5 +11,5 @@ template "/usr/share/pyshared/quantum/db/db_base_plugin_v2.py" do
   owner "root"
   mode "0644"
   notifies :restart, resources(:service => "quantum-server"), :immediately
-  only_if { ::Chef::Recipe::Patch.check_package_version("quantum-server","2013.1-0ubuntu2~cloud0",node) }
+  only_if { ::Chef::Recipe::Patch.check_package_version("quantum-server","1:2013.1-0ubuntu2~cloud0",node) }
 end
