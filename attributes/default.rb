@@ -64,6 +64,14 @@ default["quantum"]["lb"]["physical_networks"] = "private-net-01,private-net-02" 
 default["quantum"]["lb"]["physical_network"] = "private-net-01"                  # Pre-defined private network for this node
 default["quantum"]["lb"]["physical_interface"] = "eth1"                          # Physical interface used for VM traffic
 
+# nova.conf options for quantum
+default["quantum"]["network_api_class"] = "nova.network.quantumv2.api.API"
+default["quantum"]["auth_strategy"] = "keystone"
+default["quantum"]["libvirt_vif_driver"] = "nova.virt.libvirt.vif.LibvirtHybridOVSBridgeDriver"
+default["quantum"]["linuxnet_interface_driver"] = "nova.network.linux_net.LinuxOVSInterfaceDriver"
+default["quantum"]["firewall_driver"] = "nova.virt.libvirt.firewall.IptablesFirewallDriver"
+default["quantum"]["service_quantum_metadata_proxy"] = "True"
+
 case platform
 when "fedora", "redhat", "centos"
     default["quantum"]["platform"]["folsom"] = {
