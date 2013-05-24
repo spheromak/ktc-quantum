@@ -31,7 +31,7 @@ service "quantum-l3-agent" do
     action :nothing
 end
 
-ks_admin_endpoint = get_access_endpoint("keystone", "keystone", "admin-api")
+ks_admin_endpoint = get_access_endpoint("keystone-api", "keystone", "admin-api")
 metadata_ip = get_ip_for_net("nova", search(:node, "recipes:nova\\:\\:api-metadata AND chef_environment:#{node.chef_environment}")[0])
 
 # To get quantum service_pass from quantum server.

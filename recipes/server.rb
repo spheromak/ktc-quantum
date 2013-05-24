@@ -32,8 +32,8 @@ package "quantum-plugin-linuxbridge" do
     only_if { node["quantum"]["plugin"] == "lb" }
 end
 
-ks_admin_endpoint = get_access_endpoint("keystone", "keystone", "admin-api")
-ks_service_endpoint = get_access_endpoint("keystone", "keystone", "service-api")
+ks_admin_endpoint = get_access_endpoint("keystone-api", "keystone", "admin-api")
+ks_service_endpoint = get_access_endpoint("keystone-api", "keystone", "service-api")
 keystone = get_settings_by_role("keystone", "keystone")
 
 # Create db and user

@@ -30,7 +30,7 @@ end
 # To get quantum service_pass from quantum server.
 quantum_info = get_settings_by_recipe("nova-network\\:\\:nova-controller", "quantum")
 
-ks_admin_endpoint = get_access_endpoint("keystone", "keystone", "admin-api")
+ks_admin_endpoint = get_access_endpoint("keystone-api", "keystone", "admin-api")
 template "/etc/quantum/dhcp_agent.ini" do
     source "#{release}/dhcp_agent.ini.erb"
     owner "root"
