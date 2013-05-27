@@ -5,7 +5,7 @@
 include_recipe "osops-utils"
 
 %w{ 1:2013.1-0ubuntu2~cloud0}.each do |version|
-  if ::Chef::Recipe::Patch.check_package_version("nova-compute",version,node)
+  if ::Chef::Recipe::Patch.check_package_version("quantum-server",version,node)
     # add /32 subnet support
     template "/usr/share/pyshared/quantum/db/db_base_plugin_v2.py" do
       source "ktc-patches/db_base_plugin_v2.py.#{version}"
