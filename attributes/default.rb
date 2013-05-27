@@ -67,8 +67,8 @@ default["quantum"]["lb"]["physical_interface"] = "eth1"                         
 # nova.conf options for quantum
 default["quantum"]["network_api_class"] = "nova.network.quantumv2.api.API"
 default["quantum"]["auth_strategy"] = "keystone"
-default["quantum"]["libvirt_vif_driver"] = "nova.virt.libvirt.vif.LibvirtHybridOVSBridgeDriver"
-default["quantum"]["linuxnet_interface_driver"] = "nova.network.linux_net.LinuxOVSInterfaceDriver"
+default["quantum"]["libvirt_vif_driver"] = "nova.virt.libvirt.vif.LibvirtGenericVIFDriver"
+default["quantum"]["linuxnet_interface_driver"] = "nova.network.linux_net.LinuxBridgeInterfaceDriver"
 default["quantum"]["firewall_driver"] = "nova.virt.libvirt.firewall.IptablesFirewallDriver"
 default["quantum"]["service_quantum_metadata_proxy"] = "True"
 
