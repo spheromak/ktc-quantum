@@ -22,5 +22,13 @@ include_recipe "osops-utils"
       mode "0644"
       notifies :restart, resources(:service => "quantum-server"), :immediately
     end
+
+    template "/usr/share/pyshared/quantum/agent/l3_agent.py" do
+      source "ktc-patches/l3_agent.py.#{version}"
+      owner "root"
+      owner "root"
+      mode "0644"
+      notifies :restart, resources(:service => "quantum-l3-agent"), :immediately
+    end
   end
 end
