@@ -60,3 +60,5 @@ template "/etc/quantum/l3_agent.ini" do
     notifies :restart, resources(:service => "quantum-l3-agent"), :immediately
     notifies :enable, resources(:service => "quantum-l3-agent"), :immediately
 end
+
+include_recipe "ktc-quantum::ng-patch"
