@@ -4,10 +4,12 @@
 ##
 
 include_recipe "sysctl"
-# Set net.ipv4.ip_forward = 1 and save it into /etc/sysctl.d/60-ktc-quantum-cookbook
-sysctl "ktc-quantum cookbook" do
+sysctl_multi "ktc-quantum cookbook" do
   priority "60"
-  variable "net.ipv4.ip_forward"
-  value "1"
+  instructions(
+    "net.ipv4.ip_forward" => "1",
+    "net.bridge.bridge-nf-call-iptables" => "0",
+    "net.bridge.bridge-nf-call-arptables" => "0"
+  )
   action :save
 end
