@@ -32,7 +32,8 @@ service "quantum-metadata-agent" do
 end
 
 ks_admin_endpoint = get_access_endpoint("keystone-api", "keystone", "admin-api")
-metadata_ip = get_ip_for_net("nova", search(:node, "recipes:nova\\:\\:api-metadata AND chef_environment:#{node.chef_environment}")[0])
+metadata_endpoint = get_access_endpoint("nova-api-metadata", "nova", "metadata")
+metadata_ip = metadata_endpoint["host"]
 
 # To get quantum service_pass from quantum server.
 quantum_info = get_settings_by_recipe("nova-network\\:\\:nova-controller", "quantum")
