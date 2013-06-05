@@ -29,7 +29,7 @@ rabbit_port = <%= @rabbit_port %>
 rabbit_max_retries = 0
 rabbit_retry_interval = 1
 
-notification_driver = quantum.openstack.common.notifier.rabbit_notifier
+notification_driver = quantum.openstack.common.notifier.rpc_notifier
 default_notification_level = INFO
 notification_topics = notifications
 
