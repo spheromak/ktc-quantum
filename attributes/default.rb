@@ -64,6 +64,10 @@ default["quantum"]["lb"]["physical_networks"] = "private-net-01,private-net-02" 
 default["quantum"]["lb"]["physical_network"] = "private-net-01"                  # Pre-defined private network for this node
 default["quantum"]["lb"]["physical_interface"] = "eth1"                          # Physical interface used for VM traffic
 
+# L3 agent placeholders
+default["quantum"]["l3"]["router_name"] = "private-net-01-router"
+default["quantum"]["l3"]["router_id"] = ""
+
 # nova.conf options for quantum
 default["quantum"]["network_api_class"] = "nova.network.quantumv2.api.API"
 default["quantum"]["auth_strategy"] = "keystone"

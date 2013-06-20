@@ -53,8 +53,12 @@ end
 
 platform_options["quantum_packages"].each do |pkg|
     package pkg do
-        action :upgrade
-	options platform_options["package_overrides"]
+        if node["osops"]["do_package_upgrades"]
+            action :upgrade
+        else
+            action :install
+        end
+        options platform_options["package_overrides"]
     end
 end
 
