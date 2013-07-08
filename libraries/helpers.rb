@@ -1,5 +1,5 @@
 module KTC
-  class QuantumHelpers
+  class Quantum
 
     def get_quantum_access(http, tenant_name, user_name, user_pass, api_ver)
       headers = build_headers

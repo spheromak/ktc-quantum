@@ -14,7 +14,7 @@ class Chef
       end
 
       def action_create
-        quantum = KTC::QuantumHelpers.new
+        quantum = KTC::Quantum.new
         host = new_resource.auth_host
         port = new_resource.auth_port
         protocol = new_resource.auth_protocol
