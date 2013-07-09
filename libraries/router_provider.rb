@@ -12,12 +12,14 @@ class Chef
       def initialize(new_resource, run_context)
         super
         # create the fog connection
-        @quantum = KTC::Quantum.new
+        conn = KTC::Quantum.new
           auth_url: new_resource.auth_url,
           api_key:  new_resource.user_pass,
           tenant:   new_resource.tenant_name
           user:     new_resource.user_name,
         )
+        @quantum = conn.net
+
       end
 
       def load_current_resource
