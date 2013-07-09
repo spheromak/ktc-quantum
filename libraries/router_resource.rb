@@ -14,45 +14,15 @@ class Chef
         @action = "create"
         @allowed_actions.push(:create)
         @provider = Chef::Provider::QuantumRouter
-        @auth_protocol = nil
-        @auth_host = nil
-        @auth_port = nil
+        @auth_url = nil
       end
 
-      def auth_protocol(arg=nil)
+      def auth_url(arg=nil)
         set_or_return(
           :auth_protocol,
           arg,
           :kind_of => String,
-          :equal_to => [ "http", "https" ],
           :required => true
-        )
-      end
-
-      def auth_host(arg=nil)
-        set_or_return(
-          :auth_host,
-          arg,
-          :kind_of => String,
-          :required => true
-        )
-      end
-
-      def auth_port(arg=nil)
-        set_or_return(
-          :auth_port,
-          arg,
-          :kind_of => String,
-          :required => true
-        )
-      end
-
-      def auth_api_ver(arg=nil)
-        set_or_return(
-          :auth_api_ver,
-          arg,
-          :default => "/v2.0",
-          :kind_of => String
         )
       end
 
@@ -74,7 +44,7 @@ class Chef
         )
       end
 
-      def user_pass(arg=nil)
+      def api_key(arg=nil)
         set_or_return(
           :user_pass,
           arg,
