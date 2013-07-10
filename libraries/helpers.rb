@@ -25,7 +25,7 @@ module KTC
     end
 
     def validate
-      %w/uri user pass tennant api_ver/.each do |opt|
+      %w/auth_url user api_key tenant/.each do |opt|
         if opt.to_sym.nil?
           raise "Argument must not be empty '#{opt.to_sym}'"
         end
